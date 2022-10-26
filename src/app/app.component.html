@@ -1,4 +1,34 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<ul
+  ngbNav
+  #nav="ngbNav"
+  [(activeId)]="active"
+  (navChange)="onNavChange($event)"
+  class="nav-tabs"
+>
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>First</a>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Second</a>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<div class="mb-3">
+  <button
+    class="btn btn-sm btn-outline-primary"
+    [disabled]="active === 2"
+    (click)="nav.select(2)"
+  >
+    Select second tab
+  </button>
+  <button
+    class="btn btn-sm btn-outline-primary ms-2"
+    (click)="toggleDisabled()"
+  >
+    Toggle last disabled
+  </button>
+</div>
+
+<pre>Active: {{ active }}</pre>
